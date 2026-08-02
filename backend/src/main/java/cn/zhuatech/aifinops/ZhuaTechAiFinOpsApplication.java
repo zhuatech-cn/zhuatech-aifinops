@@ -1,0 +1,8 @@
+/* Copyright 2026 上海如静知华信息科技有限公司 */
+package cn.zhuatech.aifinops;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+@SpringBootApplication
+public class ZhuaTechAiFinOpsApplication {
+    public static void main(String[] args) { SpringApplication.run(ZhuaTechAiFinOpsApplication.class, args); }
+}
