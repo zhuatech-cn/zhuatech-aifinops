@@ -56,3 +56,7 @@ npm run dev:demo
 | ![知华科技微信咨询一](docs/images/zhuatech-wechat-consulting.png) | ![知华科技微信咨询二](docs/images/zhuatech-wechat-consulting-2.png) |
 
 [访问知华科技官网](https://www.zhuatech.cn/) · SEO 关键词：AI FinOps、AI 成本管理、Token 成本、GPU 成本、LLM 成本治理、AI 单位经济性、Java FinOps、知华科技。
+
+## AI 支出异常预测
+
+新增 `POST /api/aifinops/insights/spend-anomaly`。接口将当日消耗与历史日均基线对比，同时按剩余天数预测月度支出，并结合缓存命中率与预算使用率返回 `NORMAL`、`OPTIMIZE` 或 `THROTTLE`，帮助团队在超预算前采取模型路由、缓存或限流措施。
