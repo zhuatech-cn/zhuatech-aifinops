@@ -14,11 +14,18 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-/** 为模型调用预占预算，支持幂等重放、降本路由、并发上限和释放。 */
+/**
+ * 为模型调用预占预算，支持幂等重放、降本路由、并发上限和释放。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class AiBudgetReservationService {
     private final ConcurrentMap<String, ReservationResult> reservations = new ConcurrentHashMap<>();
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public ReservationResult reserve(ReservationRequest request) {
         String key = key(request.tenantId(), request.budgetCode(), request.reservationId());
         ReservationResult existing = reservations.get(key);
@@ -64,26 +71,41 @@ public class AiBudgetReservationService {
         return result;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public ReleaseResult release(String tenantId, String budgetCode, String reservationId) {
         ReservationResult removed = reservations.remove(key(tenantId, budgetCode, reservationId));
         return new ReleaseResult(reservationId, removed != null,
                 removed == null ? BigDecimal.ZERO.setScale(2) : removed.effectiveReservedCost());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private ReservationResult replay(ReservationResult existing) {
         return new ReservationResult(existing.reservationId(), existing.status(), existing.requestedCost(),
                 existing.effectiveReservedCost(), existing.projectedSpend(), existing.hardLimit(),
                 true, existing.controls());
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private String key(String tenantId, String budgetCode, String reservationId) {
         return tenantId + "|" + budgetCode + "|" + reservationId;
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private BigDecimal money(BigDecimal value) {
         return value.setScale(2, RoundingMode.HALF_UP);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ReservationRequest(@NotBlank String reservationId, @NotBlank String tenantId,
             @NotBlank String budgetCode, @NotBlank String workloadCode,
             @DecimalMin("0.01") BigDecimal predictedCost,
@@ -94,9 +116,18 @@ public class AiBudgetReservationService {
             @DecimalMin("0") @DecimalMax("0.90") BigDecimal fallbackSavingRate,
             boolean criticalWorkload, @Min(0) int currentConcurrentReservations,
             @Min(1) int maxConcurrentReservations) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ReservationResult(String reservationId, Status status, BigDecimal requestedCost,
             BigDecimal effectiveReservedCost, BigDecimal projectedSpend, BigDecimal hardLimit,
             boolean idempotentReplay, List<String> controls) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record ReleaseResult(String reservationId, boolean released, BigDecimal releasedAmount) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public enum Status { RESERVED, FALLBACK_RESERVED, REVIEW, DENIED }
 }

@@ -12,8 +12,14 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class AiSpendAnomalyService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result forecast(Request request) {
         int remainingDays = Math.max(0, request.periodDays() - request.daysElapsed());
         BigDecimal forecastSpend = request.currentMonthSpend()
@@ -35,6 +41,9 @@ public class AiSpendAnomalyService {
             dailyVariance, decision, actions);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String applicationCode,
                           @DecimalMin("0") BigDecimal currentMonthSpend,
                           @DecimalMin("0") BigDecimal currentDailySpend,
@@ -42,6 +51,9 @@ public class AiSpendAnomalyService {
                           @DecimalMin("0.01") BigDecimal monthlyBudget,
                           @Min(0) int daysElapsed, @Min(1) int periodDays,
                           @DecimalMin("0") @DecimalMax("1") BigDecimal cacheHitRate) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String applicationCode, BigDecimal forecastSpend,
                          BigDecimal budgetUsageRate, BigDecimal dailyVarianceRate,
                          String decision, List<String> actions) {}

@@ -6,9 +6,15 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 class AiBudgetReservationServiceTests {
     private final AiBudgetReservationService service = new AiBudgetReservationService();
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test void reservesAndReplaysIdempotently() {
         var first = service.reserve(request("R-1", "100", "400", false, "0", 1, 10, false));
         var replay = service.reserve(request("R-1", "100", "400", false, "0", 1, 10, false));
@@ -18,6 +24,9 @@ class AiBudgetReservationServiceTests {
         assertThat(service.release("T-1", "B-1", "R-1").released()).isFalse();
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test void appliesFallbackBeforeReservation() {
         var result = service.reserve(request("R-2", "400", "800", true, "0.50", 1, 10, false));
         assertThat(result.status()).isEqualTo(AiBudgetReservationService.Status.FALLBACK_RESERVED);
@@ -25,6 +34,9 @@ class AiBudgetReservationServiceTests {
         assertThat(result.projectedSpend()).isEqualByComparingTo("1000.00");
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     @Test void deniesConcurrencyAndNoncriticalHardLimitOverrun() {
         var concurrent = service.reserve(request("R-3", "100", "100", false, "0", 10, 10, false));
         var overrun = service.reserve(request("R-4", "600", "900", false, "0", 1, 10, false));
@@ -32,6 +44,9 @@ class AiBudgetReservationServiceTests {
         assertThat(overrun.status()).isEqualTo(AiBudgetReservationService.Status.DENIED);
     }
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     private AiBudgetReservationService.ReservationRequest request(String id, String predicted,
             String committed, boolean fallback, String saving, int current, int max, boolean critical) {
         return new AiBudgetReservationService.ReservationRequest(id, "T-1", "B-1", "SEARCH",

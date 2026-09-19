@@ -11,10 +11,17 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 将模型 token 与 GPU 使用量归集到业务项目，并给出预算状态。 */
+/**
+ * 将模型 token 与 GPU 使用量归集到业务项目，并给出预算状态。
+ *
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class AiCostAllocationService {
     private static final BigDecimal MILLION = new BigDecimal("1000000");
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String provider, @NotBlank String model, @NotBlank String project,
                           @PositiveOrZero long inputTokens, @PositiveOrZero long outputTokens,
                           @PositiveOrZero long gpuMinutes,
@@ -23,11 +30,17 @@ public class AiCostAllocationService {
                           @DecimalMin("0.0") BigDecimal gpuRatePerMinute,
                           @DecimalMin("0.01") BigDecimal monthlyBudget,
                           @PositiveOrZero long businessOutcomeUnits) {}
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String project, BigDecimal tokenCost, BigDecimal gpuCost,
                          BigDecimal totalCost, BigDecimal costPerOutcome,
                          BigDecimal budgetUtilization, String budgetState,
                          List<String> optimizationHints) {}
 
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result allocate(Request r) {
         BigDecimal input = BigDecimal.valueOf(r.inputTokens()).multiply(r.inputRatePerMillion()).divide(MILLION, 6, RoundingMode.HALF_UP);
         BigDecimal output = BigDecimal.valueOf(r.outputTokens()).multiply(r.outputRatePerMillion()).divide(MILLION, 6, RoundingMode.HALF_UP);
