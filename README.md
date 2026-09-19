@@ -60,3 +60,7 @@ npm run dev:demo
 ## AI 支出异常预测
 
 新增 `POST /api/aifinops/insights/spend-anomaly`。接口将当日消耗与历史日均基线对比，同时按剩余天数预测月度支出，并结合缓存命中率与预算使用率返回 `NORMAL`、`OPTIMIZE` 或 `THROTTLE`，帮助团队在超预算前采取模型路由、缓存或限流措施。
+
+## 调用前预算预占
+
+`POST /api/aifinops/insights/budget-reservations` 在模型调用前实施租户预算预占、幂等重放、软硬限额、并发控制和降本路由；成功预占可通过 `DELETE` 接口释放，避免并发调用穿透月度预算。详见[预算预占说明](docs/ENTERPRISE_BUDGET_RESERVATION.md)。
