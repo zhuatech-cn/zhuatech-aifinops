@@ -1,5 +1,7 @@
 # ZhuaTech AI FinOps
 
+2026-10-23 功能更新：**模型用量去重与成本分摊**。按请求编号去重，检测同号不同账单冲突，以 BigDecimal 按币种及部门分摊 token 费用；不同币种不相加。仅核算输入账单，不发起扣款。 [接口、操作与边界说明](docs/AI_PRACTICAL_UPGRADE_20261023.md)。
+
 [简体中文](README.md) | [English](README.en.md)
 
 AI 成本不应只是一张云账单。本项目把模型 Token、GPU、向量服务等技术成本分摊到业务项目，并进一步观察每次对话、每份文档或每个业务成果的单位成本。
