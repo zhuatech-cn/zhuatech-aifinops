@@ -1,0 +1,91 @@
+[
+  {
+    "patch": {},
+    "expected": {
+      "decision": "REVIEW",
+      "netSpend": "#650",
+      "uncommittedBudget": "#150"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "REVIEW",
+      "netSpend": "#650",
+      "uncommittedBudget": "#150"
+    }
+  },
+  {
+    "patch": {
+      "wasteLimitPct": "15"
+    },
+    "expected": {
+      "decision": "PASS"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "REVIEW",
+      "netSpend": "#650",
+      "uncommittedBudget": "#150"
+    }
+  },
+  {
+    "patch": {
+      "monthlyBudget": "849"
+    },
+    "expected": {
+      "decision": "HOLD",
+      "uncommittedBudget": "#-1"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "REVIEW",
+      "netSpend": "#650",
+      "uncommittedBudget": "#150"
+    }
+  },
+  {
+    "patch": {
+      "successCost": "0",
+      "failedCost": "0",
+      "retryCost": "0",
+      "credits": "0"
+    },
+    "expected": {
+      "wastePct": "N/A"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "REVIEW",
+      "netSpend": "#650",
+      "uncommittedBudget": "#150"
+    }
+  },
+  {
+    "patch": {
+      "monthlyBudget": "850",
+      "wasteLimitPct": "15"
+    },
+    "expected": {
+      "decision": "PASS"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "REVIEW",
+      "netSpend": "#650",
+      "uncommittedBudget": "#150"
+    }
+  },
+  {
+    "patch": {
+      "committed": "0"
+    },
+    "expected": {
+      "uncommittedBudget": "#350"
+    },
+    "error": false,
+    "baseline": {
+      "decision": "REVIEW",
+      "netSpend": "#650",
+      "uncommittedBudget": "#150"
+    }
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "patch": {
+    "wasteLimitPct": "15"
+  },
+  "description": "无效支出阈值%改为15"
+}
